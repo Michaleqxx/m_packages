@@ -3,6 +3,8 @@ Zajebisty skrypcik na paczusie do FiveM, w pełni autorski prócz HTMLa, jest on
 Jeżeli ktoś mi napisze że nie umie albo coś mu nie działa, to nie pomagam z góry pisze i jak chcecie go przerobić
 droga wolna, tylko nie sprzedawajcie dzięki <3
 
+A i trochę sie readme rozjechało także podstawa lua wymagana żebyście to ogarnęli 
+
 SHOWOFF: https://youtu.be/-mIns-hcBlc
 
 # Credity borze
