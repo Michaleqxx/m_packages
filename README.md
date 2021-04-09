@@ -1,5 +1,9 @@
 # m_packages
-Zajebisty skrypcik na paczusie do FiveM
+Zajebisty skrypcik na paczusie do FiveM, w pełni autorski prócz HTMLa, jest on tylko przerobiony na potrzeby skryptu.
+Jeżeli ktoś mi napisze że nie umie albo coś mu nie działa, to nie pomagam z góry pisze i jak chcecie go przerobić
+droga wolna, tylko nie sprzedawajcie dzięki <3
+
+SHOWOFF: https://youtu.be/-mIns-hcBlc
 
 # Credity borze
 
@@ -73,8 +77,6 @@ elseif type == 'item_paczka' then
 elseif type == 'item_paczka' then
 	TriggerServerEvent("kurier:wypakuj", number)
 	menu1.close()
-
-SHOWOFF:
 
 Zajebiście jak mamy już to wszystko za sobą to skrypcik funkiel powinien działać, jeżeli jest jakiś 
 problem z instalacją to poradniki do lua i nauki angielskiego są na necie pozderki <3
