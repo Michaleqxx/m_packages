@@ -10,6 +10,12 @@ SHOWOFF: https://youtu.be/-mIns-hcBlc
 - Dziękuje dla NewWayRP za fajny wygląd bankomatów, sobie pożyczyłem i przerobiłem pod siebie: https://github.com/NewWayRP/new_banking
 - Autor to ja cześ
 
+** BAZA DANYCH **
+
+Plik macie razem ze skryptem jedyne co musicie dodać to do tabeli items, itemki:
+etykieta - Item który może wykorzystać firma i od razu przypisać numer do paczki
+paczka - Pusta paczka w którą można zapakować itemy
+
 ** ES_EXTENDED / SERVER / MAIN.LUA **
 
 `Dodajecie to na końcu pliku, z resztą dajcie to gdzie chcecie wywalone`
