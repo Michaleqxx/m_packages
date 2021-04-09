@@ -3,7 +3,8 @@ Zajebisty skrypcik na paczusie do FiveM
 
 # Credity borze
 
-Dziękuje dla NewWayRP za fajny wygląd bankomatów, sobie pożyczyłem i przerobiłem pod siebie: https://github.com/NewWayRP/new_banking
+- Dziękuje dla NewWayRP za fajny wygląd bankomatów, sobie pożyczyłem i przerobiłem pod siebie: https://github.com/NewWayRP/new_banking
+- Autor to ja cześ
 
 ** ES_EXTENDED / SERVER / MAIN.LUA **
 
