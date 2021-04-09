@@ -7,6 +7,8 @@ A i trochę sie readme rozjechało także podstawa lua wymagana żebyście to og
 
 SHOWOFF: https://youtu.be/-mIns-hcBlc
 
+P.S. Wszystkie notyfikacje (xPlayer.showPopupNotification i ESX.ShowPopupNotification) musicie pozmieniać na te standardowe z ESX'a
+
 # Credity borze
 
 - Dziękuje dla NewWayRP za fajny wygląd bankomatów, sobie pożyczyłem i przerobiłem pod siebie: https://github.com/NewWayRP/new_banking
