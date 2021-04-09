@@ -1,6 +1,10 @@
 # m_packages
 Zajebisty skrypcik na paczusie do FiveM
 
+# Credity borze
+
+Dziękuje dla NewWayRP za fajny wygląd bankomatów, sobie pożyczyłem i przerobiłem pod siebie: https://github.com/NewWayRP/new_banking
+
 ** ES_EXTENDED / SERVER / MAIN.LUA **
 
 `Dodajecie to na końcu pliku, z resztą dajcie to gdzie chcecie wywalone`
