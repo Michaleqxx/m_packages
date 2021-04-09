@@ -1,0 +1,27 @@
+Locale = {}
+
+Locale['pl'] = {
+	PackageMessage = 'Kurier: Umieszczono paczkę %s w paczkomacie %s , odbierz ją za pomocą kodu %s !',
+	ErrorInserting = 'Paczka nie może zostać umieszczona ponieważ nie ma takiego numeru!',
+	SuccessInserting = 'Paczka została pomyślnie dodana do paczkomatu!',
+	SuccessInsertingSortownia = 'Paczka została pomyślnie dodana do magazynu!',
+	ErrorInsertingSortownia = 'Paczka nie mogła zostać umieszczona w magazynie!',
+	ErrorGetting = 'Nie ma paczki o kodzie %s',
+	ErrorGettingFromSortownia = 'Nie ma już paczki w sortowni',
+	SuccessGettingFromLocker = 'Pomyślnie odebrano paczkę %s',
+	PackageMessageSuccess = 'Poczta %s: Pomyślnie odebrano twoją przesyłkę %s, Zapraszamy ponownie!',
+	EtykietaMessageSuccess = 'Poczta: Etykieta %s została nadana na twój numer telefonu! Śledź swoją przesyłkę w dowolnym paczkomacie lub poczcie!',
+	SortowniaMessageSuccess = 'Poczta: Paczka %s została przyjęta w sortowni! Śledź swoją przesyłkę w dowolnym paczkomacie lub poczcie!',
+	SuccessGiving = 'Podałeś paczkę dla %s',
+	SuccessGetting = 'Otrzymałeś paczkę od %s',
+	SuccessThrowing = 'Wyrzuciłeś paczkę',
+	SuccessOpened = 'Otworzyłeś paczkę %s',
+	SuccessCreating = 'Zrobiłeś nową paczkę: %s',
+	VehicleIsAlreadyOut = 'Już wyciągnąłeś pojazd',
+	VehicleOut = 'Wyciągnąłeś pojazd',
+	SuccessChangingEtykieta = 'Nadano paczce %s etykiete z numerem %s',
+	ErrorChangingEtykieta = 'Nie udało się nadać nowego numeru paczce',
+	ErrorNumber = 'Nie można znaleźć twojego numeru telefonu',
+	CantCarry = 'Nie uniesiesz więcej',
+	NotEnoughMoney = 'Brakuje ci %s$',
+}
