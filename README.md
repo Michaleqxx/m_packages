@@ -5,7 +5,7 @@ Zajebisty skrypcik na paczusie do FiveM
 
 `Dodajecie to na końcu pliku, z resztą dajcie to gdzie chcecie wywalone`
 
-`RegisterServerEvent('kurier:getPackages')
+RegisterServerEvent('kurier:getPackages')
 AddEventHandler('kurier:getPackages', function()
 	local _source = source
 	local paczki = {}
@@ -16,7 +16,7 @@ AddEventHandler('kurier:getPackages', function()
 	})
 	
 	TriggerClientEvent("esx:getPackages", _source, paczki)
-end)`
+end)
 
 ** ES_EXTENDED / CLIENT / FUNCTIONS.LUA **
 
