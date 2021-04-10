@@ -305,9 +305,9 @@ AddEventHandler('kurier:buyItem', function(name, price)
 				xPlayer.addInventoryItem(name, 1)
 			else
 				xPlayer.showNotification(string.format(Locale[Config.Language].NotEnoughMoney, price - xPlayer.getMoney()))
-			else
-				xPlayer.showNotification(Locale[Config.Language].CantCarry)
 			end
+		else
+			xPlayer.showNotification(Locale[Config.Language].CantCarry)
 		end
 	end
 end)
