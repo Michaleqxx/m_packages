@@ -2,7 +2,7 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 --------------------------------------------
-----		  Skrypt na Kuriera			----
+----		  Skrypt na Paczusie		----
 ----			Wykonane przez			----
 ----			  Michaleqxx			----
 --------------------------------------------
@@ -105,7 +105,7 @@ ESX.RegisterServerCallback('kurier:getSledzionePaczki', function(source, cb)
 				end
 			end)
 		else
-			xPlayer.showPopup(Locale[Config.Language].ErrorNumber, 'top', 'red-10')
+			xPlayer.showNotification(Locale[Config.Language].ErrorNumber)
 		end
 	end)
 end)
@@ -173,8 +173,8 @@ AddEventHandler('kurier:givePaczka', function(player, id)
 	ReloadPaczusieForClient(_source)
 	ReloadPaczusieForClient(player)
 	
-	xPlayer.showPopup(string.format(Locale[Config.Language].SuccessGiving, player), 'top', 'green-8')
-	zPlayer.showPopup(string.format(Locale[Config.Language].SuccessGetting, xPlayer.source), 'top', 'green-8')
+	xPlayer.showNotification(string.format(Locale[Config.Language].SuccessGiving, player))
+	zPlayer.showNotification(string.format(Locale[Config.Language].SuccessGetting, xPlayer.source))
 end)
 
 RegisterNetEvent('kurier:getPackageFromSortownia')
@@ -195,12 +195,12 @@ AddEventHandler('kurier:getPackageFromSortownia', function(id)
 				})
 				
 				ReloadPaczusieForClient(_source)
-				xPlayer.showPopup(string.format(Locale[Config.Language].SuccessGettingFromLocker, result[1].label), 'top', 'green-8')
+				xPlayer.showNotification(string.format(Locale[Config.Language].SuccessGettingFromLocker, result[1].label))
 			else
-				xPlayer.showPopup(Locale[Config.Language].ErrorGettingFromSortownia, 'top', 'red-10')
+				xPlayer.showNotification(Locale[Config.Language].ErrorGettingFromSortownia)
 			end
 		else
-			xPlayer.showPopup(Locale[Config.Language].ErrorGettingFromSortownia, 'top', 'red-10')
+			xPlayer.showNotification(Locale[Config.Language].ErrorGettingFromSortownia)
 		end
 	end)
 end)
@@ -229,10 +229,10 @@ AddEventHandler('kurier:sendPackageToSortownia', function(id)
 				['@user'] = nil,
 			})
 			TriggerClientEvent('kurier:gcphone', _source, string.format(Locale[Config.Language].SortowniaMessageSuccess, result[1].label), result[1].receiver)
-			xPlayer.showPopup(Locale[Config.Language].SuccessInsertingSortownia, 'top', 'green-8')
+			xPlayer.showNotification(Locale[Config.Language].SuccessInsertingSortownia)
 			ReloadPaczusieForClient(_source)
 		else
-			xPlayer.showPopup(Locale[Config.Language].ErrorInsertingSortownia, 'top', 'red-10')
+			xPlayer.showNotification(Locale[Config.Language].ErrorInsertingSortownia)
 		end
 	end)
 end)
@@ -252,7 +252,7 @@ AddEventHandler('kurier:wypakuj', function(id)
 			for i=1,#pizda,1 do
 				xPlayer.addInventoryItem(pizda[i].name, pizda[i].count)
 			end
-			xPlayer.showPopup(string.format(Locale[Config.Language].SuccessOpened, result[1].label), 'top', 'green-8')
+			xPlayer.showNotification(string.format(Locale[Config.Language].SuccessOpened, result[1].label))
 			
 			MySQL.Sync.execute("DELETE FROM m_packages WHERE `id` = @id", {
 				['@id'] = id,
@@ -284,15 +284,31 @@ AddEventHandler('kurier:buyItem', function(name, price)
 	local _source = source
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	
-	if xPlayer.canCarryItem(name, 1) then
-		if xPlayer.getMoney() >= price then
-			xPlayer.removeMoney(price)
-			xPlayer.addInventoryItem(name, 1)
+	if Config.WeightBasedInventory then
+		if xPlayer.canCarryItem(name, 1) then
+			if xPlayer.getMoney() >= price then
+				xPlayer.removeMoney(price)
+				xPlayer.addInventoryItem(name, 1)
+			else
+				xPlayer.showNotification(string.format(Locale[Config.Language].NotEnoughMoney, price - xPlayer.getMoney()))
+			end
 		else
-			xPlayer.showPopup(string.format(Locale[Config.Language].NotEnoughMoney, price - xPlayer.getMoney()), 'top', 'red-10')
+			xPlayer.showNotification(Locale[Config.Language].CantCarry)
 		end
 	else
-		xPlayer.showPopup(Locale[Config.Language].CantCarry, 'top', 'red-10')
+		local item = xPlayer.getInventoryItem(name).limit
+		local itemCount = xPlayer.getInventoryItem(name).count
+		
+		if itemCount + 1 < item then
+			if xPlayer.getMoney() >= price then
+				xPlayer.removeMoney(price)
+				xPlayer.addInventoryItem(name, 1)
+			else
+				xPlayer.showNotification(string.format(Locale[Config.Language].NotEnoughMoney, price - xPlayer.getMoney()))
+			else
+				xPlayer.showNotification(Locale[Config.Language].CantCarry)
+			end
+		end
 	end
 end)
 
@@ -309,7 +325,7 @@ AddEventHandler('kurier:throwPaczka', function(id)
 		end
 	end)
 	ReloadPaczusieForClient(_source)
-	xPlayer.showPopup(Locale[Config.Language].SuccessThrowing, 'top', 'green-8')
+	xPlayer.showNotification(Locale[Config.Language].SuccessThrowing)
 end)
 
 RegisterNetEvent('kurier:updatePackageNumber')
@@ -331,9 +347,9 @@ AddEventHandler('kurier:updatePackageNumber', function(id, playerNum)
 			
 			TriggerClientEvent('kurier:gcphone', _source, string.format(Locale[Config.Language].EtykietaMessageSuccess, result[1].label), playerNum)
 			ReloadPaczusieForClient(_source)
-			xPlayer.showPopup(string.format(Locale[Config.Language].SuccessChangingEtykieta, result[1].label, playerNum), 'top', 'green-8')
+			xPlayer.showNotification(string.format(Locale[Config.Language].SuccessChangingEtykieta, result[1].label, playerNum))
 		else
-			xPlayer.showPopup(Locale[Config.Language].ErrorChangingEtykieta, 'top', 'red-10')
+			xPlayer.showNotification(Locale[Config.Language].ErrorChangingEtykieta)
 		end
 	end)
 end)
@@ -360,12 +376,12 @@ AddEventHandler('kurier:getPackage', function(code, zone)
 				
 				TriggerClientEvent('kurier:gcphone', _source, string.format(Locale[Config.Language].PackageMessageSuccess, result[1].zone, result[1].label), result[1].receiver)
 				ReloadPaczusieForClient(_source)
-				xPlayer.showPopup(string.format(Locale[Config.Language].SuccessGettingFromLocker, result[1].label, result[1].receiver), 'top', 'green-8')
+				xPlayer.showNotification(string.format(Locale[Config.Language].SuccessGettingFromLocker, result[1].label, result[1].receiver))
 			else
-				xPlayer.showPopup(string.format(Locale[Config.Language].ErrorGetting, code), 'top', 'red-10')
+				xPlayer.showNotification(string.format(Locale[Config.Language].ErrorGetting, code))
 			end
 		else
-			xPlayer.showPopup(string.format(Locale[Config.Language].ErrorGetting, code), 'top', 'red-10')
+			xPlayer.showNotification(string.format(Locale[Config.Language].ErrorGetting, code))
 		end
 	end)
 end)
@@ -393,10 +409,10 @@ AddEventHandler('kurier:sendPackage', function(id, playerNum, zone)
 				['@user'] = nil,
 			})
 			TriggerClientEvent('kurier:gcphone', _source, string.format(Locale[Config.Language].PackageMessage, label, zone, code), playerNum)
-			xPlayer.showPopup(Locale[Config.Language].SuccessInserting, 'top', 'green-8')
+			xPlayer.showNotification(Locale[Config.Language].SuccessInserting)
 			ReloadPaczusieForClient(_source)
 		else
-			xPlayer.showPopup(Locale[Config.Language].ErrorInserting, 'top', 'red-10')
+			xPlayer.showNotification(Locale[Config.Language].ErrorInserting)
 		end
 	end)
 end)
@@ -419,5 +435,5 @@ AddEventHandler('kurier:createPackage', function(items, label)
 	})
 	
 	ReloadPaczusieForClient(_source)
-	xPlayer.showPopup(string.format(Locale[Config.Language].SuccessCreating, endLabel), 'top', 'green-8')
+	xPlayer.showNotification(string.format(Locale[Config.Language].SuccessCreating, endLabel))
 end)
