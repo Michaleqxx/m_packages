@@ -41,9 +41,11 @@ end)
 
 `Dodajce to nad eq [ESX.ShowInventory = function()]:`
 
-RegisterNetEvent('kurier:getPackages')
-AddEventHandler('kurier:getPackages', function()
-	TriggerServerEvent('kurier:getPackages')
+local packages = {}
+
+RegisterNetEvent('esx:getPackages')
+AddEventHandler('esx:getPackages', function(result)
+	packages = result
 end)
 
 `Dodajcie to w eq, pod pętlą z gotówką, jak wiecie to robicie to możecie se kolejność zmienić:`
