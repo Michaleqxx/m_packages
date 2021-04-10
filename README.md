@@ -48,6 +48,11 @@ AddEventHandler('esx:getPackages', function(result)
 	packages = result
 end)
 
+RegisterNetEvent('kurier:getPackages')
+AddEventHandler('kurier:getPackages', function()
+	TriggerServerEvent('kurier:getPackages')
+end)
+
 `Dodajcie to w eq, pod pętlą z gotówką, jak wiecie to robicie to możecie se kolejność zmienić:`
 
 if packages ~= nil then
